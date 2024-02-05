@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  masternode:
+    image: master:1
+
+    networks:
+      hadoopcluster:
+        ipv4_address: 172.7.0.2
+
+  
+  workernode1:
+    image: worker:1
+
+    networks:
+      hadoopcluster:
+        ipv4_address: 172.7.0.3
+
+  workernode2:
+    image: worker:1
+
+    networks:
+      hadoopcluster:
+        ipv4_address: 172.7.0.4
+  
+  workernode3:
+    image: worker:1
+
+    networks:
+      hadoopcluster:
+        ipv4_address: 172.7.0.5
+
+
+networks:
+  hadoopcluster:
+    name: hadoopcluster
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.7.0.0/16
+          gateway: 172.7.0.1
